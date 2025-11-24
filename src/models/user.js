@@ -7,7 +7,13 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     password: { type: String, required: true, minlength: 6, select: false },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }]
+   wishlist: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product"
+  }
+],
+
   },
   { timestamps: true }
 );
@@ -24,5 +30,7 @@ userSchema.methods.comparePassword = function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
+
 const User = mongoose.model("User", userSchema);
 export default User;
+
