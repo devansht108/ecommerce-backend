@@ -30,8 +30,23 @@ const orderSchema = new mongoose.Schema(
     // Order ka current status
     status: {
       type: String,
-      enum: ["pending", "confirmed", "shipped", "delivered"], // Ye hi valid statuses hain
-      default: "pending", // Default me order pending rahega
+      enum: ["pending", "confirmed", "shipped", "delivered"],
+      default: "pending",
+    },
+
+    // -----------------------------
+    // DAY 17 PAYMENT FIELDS (Added)
+    // -----------------------------
+
+    // Kya payment ho chuki? (mock payment ke liye)
+    isPaid: {
+      type: Boolean,
+      default: false,
+    },
+
+    // Payment kab hui?
+    paidAt: {
+      type: Date,
     },
   },
   { timestamps: true } // Mongoose khud se createdAt aur updatedAt add karega
